@@ -1,0 +1,62 @@
+Các collection chính:
+
+User:
+
+javascript
+
+{
+  name: String,
+  username: String,
+  password: String (hashed),
+  email: String,
+  role: String (menberUser/shopUser/admin),
+  address: String,
+  createdAt: Date,
+}
+-----------------------------------------
+Product:
+
+javascript
+
+{
+  name: String,
+  price: Number,
+  description: String,
+  category: String,
+  image: String (URL),
+  stock: Number,
+}
+-----------------------------------------
+Order:
+
+javascript
+
+{
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
+  products: [
+    {
+      product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+      quantity: Number,
+    }
+  ],
+  totalAmount: Number,
+  paymentStatus: String (pending/completed/failed),
+  OderStatus: String (pending/processing/shipped/delivered/cancelled),
+  shippingAddress: string,
+  ship: Number,
+  createdAt: Date,
+}
+-----------------------------------------
+Cart (nếu dùng database để lưu giỏ hàng):
+
+javascript
+
+{
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  products: [
+    {
+      product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+      quantity: Number,
+    }
+  ],
+}
